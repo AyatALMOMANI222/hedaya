@@ -22,6 +22,8 @@ Route::post('/verify-otp', [AuthOtpController::class, 'verifyOtp'])->name('otp.v
 
 
 Route::post('/user/{id}', [UserController::class, 'update']);
-Route::get('/user', [UserController::class, 'getAllUsers']);
+Route::get('/user', [UserController::class, 'getAllUsers'])->middleware(['auth:sanctum','admin']);
 
 Route::get('/user/{id}', [UserController::class, 'getUserById']);
+
+Route::put('/user/{id}', [UserController::class, 'updateKycStatus'])->middleware(['auth:sanctum','admin']);

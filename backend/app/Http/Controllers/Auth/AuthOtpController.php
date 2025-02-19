@@ -26,7 +26,9 @@ class AuthOtpController extends Controller
         $request->validate([
             'mobile_no' => 'required|regex:/^(\+?(\d{1,3}))?(\d{10})$/', // Mobile number validation (ensure proper format)
         ]);
+        $user = User::firstOrCreate(['mobile_no' => $request->mobile_no]);
 
+    
         // Generate OTP
         $userOtp = $this->generateOTP($request->mobile_no);
 
